@@ -1,0 +1,85 @@
+.booking-form fieldset {
+  display: flex;
+  border: none;
+  font-size: 18px;
+}
+ .booking-form label {
+  min-width: 200px;
+}
+.booking-form {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+.booking-form input[type="date"] {
+  min-width: 200px;
+  min-height: 25px;
+}
+.booking-form input[type="number"] {
+  min-width: 200px;
+  min-height: 25px;
+}
+.booking-form select {
+  min-width: 200px;
+  min-height: 25px;
+  border: 1.5px solid #495e57;
+  border-radius: 5px;
+}
+
+input {
+  border: 1.5px solid #495e57;
+  border-radius: 5px;
+}
+textarea {
+  border: 1.5px solid #495e57;
+  border-radius: 5px;
+}
+.outside-button {
+  display: inline;
+}
+.place-button-spans {
+  color: black;
+  margin: 0;
+  padding: 0;
+}
+input[value="inside"] {
+  margin-left: 40px;
+}
+input[value="dinner"] {
+  margin-left: 40px;
+}
+@media (max-width: 1131px){
+  .terms {
+    font-size: 15px;
+  }
+}
+@media (max-width: 972px){
+  .booking-form input[type="date"] {
+    min-width: 100px;
+    min-height: 25px;
+  }
+  .booking-form input[type="number"] {
+    min-width: 100px;
+    min-height: 25px;
+  }
+  .booking-form select {
+    min-width: 100px;
+    min-height: 25px;
+    border: 1.5px solid #495e57;
+    border-radius: 5px;
+  }
+  .booking-form label {
+    min-width: 150px;
+  }
+  .terms {
+    font-size: 13px;
+  }
+}
+@media (max-width: 854px) {
+  label {
+    display: block;
+  }
+  fieldset {
+    margin-bottom: 30px;
+  }
+}

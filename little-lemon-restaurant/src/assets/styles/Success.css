@@ -1,0 +1,22 @@
+.success-container {
+  text-align: center;
+  padding: 20px;
+  margin: 20px;
+}
+.success-container p {
+  font-size: 30px;
+}
+
+.btn button{
+  background-color: #F4CE14;
+  color: black;
+  padding: 10px;
+  border: none;
+  text-decoration: none;
+  border-radius: 12px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 170px;
+  margin-top: 20px;
+}

@@ -1,0 +1,21 @@
+.header2 {
+  height: 500px;
+  width: 100%;
+  position: relative;
+  display: inline-block;
+  background: linear-gradient(rgba(79, 107, 90, 0.5), rgba(255, 255, 255, 0.5)), url('../images/restaurant.jpg');
+  background-size: cover;
+
+}
+
+
+.heading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: yellow;
+  padding: 10px;
+  font-size: 60px;
+  font-weight: bold;
+}
