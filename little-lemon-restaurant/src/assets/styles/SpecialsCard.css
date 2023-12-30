@@ -1,7 +1,7 @@
 .special-card {
   display: grid;
-  grid-template-columns: 28% 28% 28%;
-  gap: 55px;
+  grid-template-columns: 30% 30% 30%;
+  gap: 40px;
   margin-top: 20px;
   
 }
@@ -52,9 +52,7 @@
 
 
 @media screen and (max-width: 1040px) {
-  .special-card {
-      grid-template-columns: 47% 47%;
-  }
+  
 }
 
 @media screen and (max-width: 659px) {
@@ -72,6 +70,5 @@
   }
 
   .image-container {
-      height: 200px;
   }
 }

@@ -1,15 +1,16 @@
 .container {
-  width: 20%;
+  min-width: 210px;
+  max-width: 210px;
   border-radius: 20px;
   padding: 20px;
-  margin: 20px;
+  margin: 25px;
   background-color: #fff;
-  height: 60%;
   margin-top: 0;
+  margin-bottom: 40px;
 }
 .testimonials-section {
   background-color: #edefee;
-  height: 450px;
+  height: auto;
 }
 .testimonials-section h3 { 
   text-align: center;
@@ -37,8 +38,9 @@ h5 {
 }
 .testimonies {
   display: flex;
-  height: 350px;
+  height: auto;
   align-items: center;
+  flex-wrap: wrap;
 }
 .img-name-container {
   display: inline-flex;
@@ -50,4 +52,30 @@ h5 {
   margin-right: 5px;
   color: aquamarine;
   font-weight: bolder;
+}
+@media (max-width: 1221px){
+  .container {
+    margin: 10px;
+    margin-bottom: 40px;
+    margin-left: 30px;
+  }
+}
+@media (max-width: 887px) {
+
+  .testimonies {
+    display: flex;
+    height: auto;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 80%;
+    margin-left: auto;
+    margin-left: auto;
+  }
+}
+.container {
+  margin: 25px;
+  background-color: #fff;
+  margin-top: 0;
+  margin-bottom: 40px;
+  margin-left: 15px;
 }

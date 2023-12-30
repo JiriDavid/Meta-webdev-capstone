@@ -18,7 +18,7 @@ const Header = () =>{
               <h2>Little Lemon</h2>
               <h3>Chicago</h3>
               <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Labore fugiat asperiores dolores obcaecati nisi similique eum</p>
-                <button aria-label="On Click" onClick={() => setGoToBookingPage(true)}>Reserve a table</button>
+              <button aria-label="On Click" onClick={() => setGoToBookingPage(true)}>Reserve a table</button>
             </div>
             <div className="banner-img">
              <img src={restaurantfood} alt="restaurant food" />

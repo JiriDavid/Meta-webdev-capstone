@@ -1,8 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Checkout } from './Checkout';
-import {Navigate } from "react-router-dom";
 import "../assets/styles/BookingForm.css"
 
 const BookingForm = (props) => {
@@ -13,6 +11,14 @@ const BookingForm = (props) => {
   const [place, setPlace] = useState("");
   const [instructs, setInstructs] = useState("");
   const [isTermsChecked, setIsTermsChecked] = useState(false);
+  const [avilableTimes, setAvailableTimes] = useState([
+    "17:00",
+    "18:00",
+    "19:00",
+    "20:00",
+    "21:00",
+    "22:00"
+  ]);
 
   const handleSumbit = (e) => {
     e.preventDefault();
@@ -22,13 +28,6 @@ const BookingForm = (props) => {
   const handleChange = (e) => {
     setDate(e);
     props.dispatch(e);
-  }
-  const [goToCheckout, setGoToCheckout] = useState(false)
-
-  if(goToCheckout){
-    return(
-      <Navigate to="./checkout" />
-    )
   }
 
   return (
@@ -49,20 +48,15 @@ const BookingForm = (props) => {
           <fieldset>
             <div>
               <label htmlFor='selected-time'>Select Time</label>
-              <input
-                type="radio"
-                value="lunch"
-                checked={selectedTime === 'lunch'}
-                onChange={(e) => setSelectedTime(e.target.value)}
-              />
-              <span>Lunch</span>
-              <input
-                type="radio"
-                value="dinner"
-                checked={selectedTime === 'dinner'}
-                onChange={(e) => setSelectedTime(e.target.value)}
-              />
-              <span>Dinner</span>
+              <select id="res-time" value={selectedTime} onChange={(e) => setSelectedTime(e.target.value)} key={selectedTime}>
+                {avilableTimes.map(
+                  (time,index) => (
+                    <option key={index} value={time}>
+                      {time}
+                    </option>
+                  )
+                )}
+              </select>
             </div>
           </fieldset>
           <fieldset>
@@ -110,7 +104,7 @@ const BookingForm = (props) => {
           </fieldset>
           <fieldset>
             <div className='btnReceive'>
-              <Link to="/checkout"><input type='submit' value={"Submit"} aria-label='On Click'/></Link>
+              <Link to="/checkout"><input type='submit' value={"Submit"} aria-label='On Click' /></Link>
             </div>
             <div className='btnReceive'>
               <Link to="/booking"><input type='button' value={"Cancel"} aria-label='On Click'/></Link>
