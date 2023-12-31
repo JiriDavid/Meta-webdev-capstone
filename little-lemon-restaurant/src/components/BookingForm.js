@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import "../assets/styles/BookingForm.css"
 
-const BookingForm = (props) => {
+const BookingForm = ({ availableTimes, onDateChange }) => {
   const [occasion, setOccasion] = useState('');
   const [selectedTime, setSelectedTime] = useState("");
   const [date, setDate] = useState("");
@@ -11,29 +11,21 @@ const BookingForm = (props) => {
   const [place, setPlace] = useState("");
   const [instructs, setInstructs] = useState("");
   const [isTermsChecked, setIsTermsChecked] = useState(false);
-  const [avilableTimes, setAvailableTimes] = useState([
-    "17:00",
-    "18:00",
-    "19:00",
-    "20:00",
-    "21:00",
-    "22:00"
-  ]);
 
-  const handleSumbit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    props.SubmitForm(e);
+    //SubmitForm(e);
   }
 
   const handleChange = (e) => {
-    setDate(e);
-    props.dispatch(e);
+    setDate(e.target.value);
+    onDateChange(e.target.value,availableTimes);
   }
 
   return (
     <header>
       <section>
-        <form onSubmit={handleSumbit} className='booking-form'>
+        <form onSubmit={handleSubmit} className='booking-form'>
           <fieldset>
             <div>
               <label htmlFor="select-occasion">Select Occasion</label>
@@ -49,7 +41,7 @@ const BookingForm = (props) => {
             <div>
               <label htmlFor='selected-time'>Select Time</label>
               <select id="res-time" value={selectedTime} onChange={(e) => setSelectedTime(e.target.value)} key={selectedTime}>
-                {avilableTimes.map(
+                {availableTimes.map(
                   (time,index) => (
                     <option key={index} value={time}>
                       {time}
@@ -62,7 +54,7 @@ const BookingForm = (props) => {
           <fieldset>
             <div>
               <label htmlFor='select-date'>Select date</label>
-              <input value={date} onChange={(e) => handleChange(e.target.value)} type='date' required/>
+              <input value={date} onChange={handleChange} type='date' required/>
             </div>
           </fieldset>
           <fieldset>
@@ -116,4 +108,4 @@ const BookingForm = (props) => {
   )
 }
 
-export default BookingForm
+export default BookingForm;

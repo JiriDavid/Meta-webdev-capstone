@@ -20,7 +20,7 @@ export const Checkout = () => {
       <Header2 />
       <main>
         <section>
-          <form>
+          <form className='checkout-form'>
             <fieldset>
               <label htmlFor='name'>Name</label>
               <input type='text' id="name" value={name} onChange={(e) => {setName(e.target.value)}} required/>
@@ -38,22 +38,30 @@ export const Checkout = () => {
               <input type='password' value={confirmPassword} id="confirm_password" onChange={(e) => {setConfirmPassword(e.target.value)}} required/>
             </fieldset>
             <fieldset>
-              <div>
-                <label htmlFor='credit-card-no'>Credit Card</label>
-                <input type='text' id="credit-card-no" value={creditNo} onChange={(e) => {setCreditNo(e.target.value)}} placeholder='credit card number' required/>
-              </div>
-              <div>
-                <input type='date' value={expDate} onChange={(e) => {setExpDate(e.target.value)}} placeholder='exp.date' required />
-                <input type='text' value={cvv} onChange={(e) => setCvv(e.target.value)} placeholder='CVV' required />
+              <div className='credit-card-field'>
+                <div className='credit-card-label-num'>
+                  <label htmlFor='credit-card-no' className='credit-card-label'>Credit Card</label>
+                  <input type='text' 
+                       id="credit-card-no" 
+                       value={creditNo} onChange={(e) => {setCreditNo(e.target.value)}} 
+                       placeholder='credit card number' 
+                       required 
+                       className='credit-card-input'
+                  />
+                </div>
+                <div className='cvv-expdate-field'>
+                  <input type='text' value={expDate} onChange={(e) => {setExpDate(e.target.value)}} placeholder='exp.date(mm/yyyy)' required />
+                  <input type='text' value={cvv} onChange={(e) => setCvv(e.target.value)} placeholder='CVV' required />
+                </div>
               </div>
             </fieldset>
-            <fieldset>
+            <fieldset className='terms-check'>
             <div>
               <input type='checkbox' checked={proceed}  onChange={(e) => setProceed(!proceed) }/>
               <label htmlFor='terms-check'>Are you sure you want to continue</label>
             </div>
           </fieldset>
-          <fieldset>
+          <fieldset >
             <div className='btnReceive'>
               <Link to="/success"><input type='submit' value={"Submit"} aria-label='On Click'/></Link>
             </div>
