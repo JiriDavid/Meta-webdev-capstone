@@ -42,7 +42,7 @@ const testimonialItems = testimonials.map(testimony => {
                   <div className="img-name-container">
                       <img src={image} alt="profile picture" />
                       <div className="name">
-                      <h5>{name}</h5>
+                      <p>{name}</p>
                       </div>
                   </div>
               <div className="testinony-text">

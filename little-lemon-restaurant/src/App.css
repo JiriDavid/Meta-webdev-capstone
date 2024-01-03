@@ -1,7 +1,12 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Markazi+Text&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Karla&family=Markazi+Text&display=swap');
+h1, h2, h3, h4, h5 {
+  font-family: 'Markazi Text', serif;
+}
 body{
   width: 100%;
   margin: 0 auto;
+  font-family: 'Karla', sans-serif;
 }
 .layout{
   display: grid;
@@ -84,7 +89,7 @@ nav ul li a:hover{
 
 .header {
   background-color: #495e57;
-  padding: 40px 0;
+  padding: 30px 0;
 }
 
 .header section {
@@ -96,11 +101,11 @@ position: relative;
 
 h2 {
   color: #F4CE14;
-  font-size: 40px;
+  font-size: 45px;
 }
 
 h3 {
-  font-size: 25px;
+  font-size: 35px;
 }
 
 .banner p {
@@ -125,7 +130,7 @@ button {
 .banner-img{
   position: absolute;
   right: 13%;
-  top: 15%;
+  top: 22%;
   width: 400px;
 }
 
@@ -156,16 +161,16 @@ input, label{
   outline: none;
   border-radius: 2px;
 }
-
-.btnReceive input{
-  padding: 12px 16px;
-  margin-top: 20px;
-  background: #495e57;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-
+.bottom-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 20%;
 }
+.bottom-buttons button:disabled {
+  background-color: #495E57;
+}
+
 
 .comfirm span{
   color: blue;

@@ -1,58 +1,36 @@
-import Nav from './Nav'
-import BookingForm from './BookingForm'
-import Header2 from './Header2'
-import Footer from './Footer'
-import React,{useReducer} from 'react'
- const initializeTimes = () => [
-    "17:00",
-    "18:00",
-    "19:00",
-    "20:00",
-    "21:00",
-    "22:00"
-  ];
-  const timesReducer = (state, action) => {
-    switch (action.type) {
-      case 'UPDATE_TIMES':
-        return updateTimes(action.payload);
-      default:
-        return state;
-    }
-  };
+import React, { useReducer, useState } from 'react';
+import Nav from './Nav';
+import Header2 from './Header2';
+import Footer from './Footer';
+import BookingForm from './BookingForm';
 
-  // Function to update times based on date
-const updateTimes = (selectedDate) => {
-  const dayOfWeek = new Date(selectedDate).getDay();
-
-  // Default to all times
-  let updatedTimes = initializeTimes();
-
-  // Adjust times based on the day of the week
-  if (dayOfWeek >= 1 && dayOfWeek <= 5) {
-    // Weekdays (Monday to Friday)
-    updatedTimes = ["17:00", "18:00", "19:00"];
-  } else if (dayOfWeek === 6) {
-    // Saturday
-    updatedTimes = ["17:00", "18:00", "19:00", "20:00"];
+const updatedTimes = (state, action) => {
+  switch (action.type) {
+    case 'SATURDAY':
+      return ['17:00', '18:00', '19:00', '20:00', '21:00', '22:00'];
+    case 'SUNDAY':
+      return ['19:00', '20:00'];
+    case 'WEEKDAY':
+      return ['18:00', '19:00', '20:00', '21:00', '22:00'];
+    default: 
+      return state;
   }
-
-  return updatedTimes;
 };
 
+const initializeTimes = ['18:00', '19:00', '20:00', '21:00'];
+
 const BookingPage = () => {
-  const [availableTimes, dispatch] = useReducer(timesReducer, [], initializeTimes);
-  const handleDateChange = (event) => {
-    const selectedDate = event.target.value;
-    dispatch({ type: 'UPDATE_TIMES', payload: selectedDate });
-  };
+  const [availableTimes, dispatch] = useReducer(updatedTimes, initializeTimes);
+
+
   return (
     <>
       <Nav />
       <Header2 />
-      <BookingForm onDateChange = {handleDateChange}  availableTimes = {availableTimes}/>
+      <BookingForm availableTimes={availableTimes} dispatch={dispatch} />
       <Footer />
     </>
-  )
-}
+  );
+};
 
-export default BookingPage
+export default BookingPage;

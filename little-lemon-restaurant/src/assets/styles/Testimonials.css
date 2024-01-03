@@ -18,8 +18,10 @@
   color: #F9D978;
   font-size: 30px;
 }
-h5 {
+.testimonials-section p {
   margin-top: 20px;
+  font-size: 15px;
+  font-weight: bolder;
 
 }
 .review-txt {

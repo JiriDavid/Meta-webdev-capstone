@@ -2,8 +2,9 @@ import React from 'react'
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import "../assets/styles/BookingForm.css"
+import { Button } from 'react-bootstrap';
 
-const BookingForm = ({ availableTimes, onDateChange }) => {
+const BookingForm = ({ availableTimes, dispatch}) => {
   const [occasion, setOccasion] = useState('');
   const [selectedTime, setSelectedTime] = useState("");
   const [date, setDate] = useState("");
@@ -11,15 +12,48 @@ const BookingForm = ({ availableTimes, onDateChange }) => {
   const [place, setPlace] = useState("");
   const [instructs, setInstructs] = useState("");
   const [isTermsChecked, setIsTermsChecked] = useState(false);
+  const [disabledButton, setDisabledButton] = useState(true);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    //SubmitForm(e);
+    const form = e.target;
+    if (!form.checkValidity()) {
+    // If the form is not valid, handle the error or display a message
+    console.error("Form is not valid");
+    return;
+  }
+  }
+  const enableButton = () => {
+    if(!(occasion == '') && !(selectedTime == '') && !(date == '') && !(guests == '') && !(place == '') && !(isTermsChecked == false)){
+      setDisabledButton(false);
+    }
   }
 
   const handleChange = (e) => {
     setDate(e.target.value);
-    onDateChange(e.target.value,availableTimes);
+    let selectedDate = e.target.value;
+    const dayOfWeek = new Date(selectedDate).getDay();
+    let actionType = '';
+
+    switch (dayOfWeek) {
+      case 6: // Saturday
+        actionType = 'SATURDAY';
+        break;
+      case 0: // Sunday
+        actionType = 'SUNDAY';
+        break;
+      default:
+        actionType = 'WEEKDAY';
+    }
+
+    dispatch({ type: actionType });
+  }
+  const handleTimeChange = (e) => {
+    setSelectedTime(e.target.value);
+  }
+  const handleTermsCheck = () =>{
+    setIsTermsChecked(!isTermsChecked);
+    enableButton();
   }
 
   return (
@@ -29,25 +63,11 @@ const BookingForm = ({ availableTimes, onDateChange }) => {
           <fieldset>
             <div>
               <label htmlFor="select-occasion">Select Occasion</label>
-              <select value={occasion} id='occasion' onChange={(e) => setOccasion(e.target.value)} key={occasion}>
+              <select value={occasion} id='occasion' onChange={(e) => setOccasion(e.target.value)} key={occasion} required>
                 <option value="">Occasion</option>
                 <option value="birthday">Birthday</option>
                 <option value="engagement">Engagement</option>
                 <option value="anniversary">Anniversary</option>
-              </select>
-            </div>
-          </fieldset>
-          <fieldset>
-            <div>
-              <label htmlFor='selected-time'>Select Time</label>
-              <select id="res-time" value={selectedTime} onChange={(e) => setSelectedTime(e.target.value)} key={selectedTime}>
-                {availableTimes.map(
-                  (time,index) => (
-                    <option key={index} value={time}>
-                      {time}
-                    </option>
-                  )
-                )}
               </select>
             </div>
           </fieldset>
@@ -59,13 +79,27 @@ const BookingForm = ({ availableTimes, onDateChange }) => {
           </fieldset>
           <fieldset>
             <div>
-              <label htmlFor='no-of-guests'>No of Dinners</label>
-              <input type='number' id="no-of-dinners" min="1" value={guests} onChange={(e) => setGuests(e.target.value) }/>
+              <label htmlFor='selected-time'>Select Time<span className='star'>*</span></label>
+              <select id="res-time" value={selectedTime} onChange={handleTimeChange} required>
+                {availableTimes && availableTimes.map(
+                  (time,index) => (
+                    <option key={index} value={time}>
+                      {time}
+                    </option>
+                  )
+                )}
+              </select>
             </div>
           </fieldset>
           <fieldset>
             <div>
-              <label htmlFor='selected-place'>Select Place</label>
+              <label htmlFor='no-of-guests'>No of Dinners<span className='star'>*</span></label>
+              <input type='number' id="no-of-dinners" min="1" value={guests} onChange={(e) => setGuests(e.target.value) } required />
+            </div>
+          </fieldset>
+          <fieldset>
+            <div>
+              <label htmlFor='selected-place'>Select Place<span className='star'>*</span></label>
               <input
                 type="radio"
                 value="outside"
@@ -90,16 +124,16 @@ const BookingForm = ({ availableTimes, onDateChange }) => {
           </fieldset>
           <fieldset>
             <div className='terms'>
-              <input type='checkbox' checked={isTermsChecked}  onChange={(e) => setIsTermsChecked(!isTermsChecked) }/>
+              <input type='checkbox' checked={isTermsChecked}  onChange={handleTermsCheck}/>
               <label htmlFor='terms-check'>I agree with the Terms and Conditions, and Privacy policy </label>
             </div>
           </fieldset>
-          <fieldset>
-            <div className='btnReceive'>
-              <Link to="/checkout"><input type='submit' value={"Submit"} aria-label='On Click' /></Link>
+          <fieldset className='bottom-buttons'>
+            <div>
+              <Link to="/checkout"><button type='submit' disabled= {disabledButton}>Submit</button> </Link>
             </div>
             <div className='btnReceive'>
-              <Link to="/booking"><input type='button' value={"Cancel"} aria-label='On Click'/></Link>
+              <Link to="/booking"><button type='button' >Submit</button></Link>
             </div>
           </fieldset>
         </form>

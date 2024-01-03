@@ -42,7 +42,7 @@ const SpecialsCard = () => {
                     <div className="special-card-container">
                         <div className="image-container">
                                 <img src={image} alt="Special dessert" />
-                            </div>
+                        </div>
                         <div className="special-card-text">
                             <div className="special-card-title">
                                 <h3>{title}</h3>

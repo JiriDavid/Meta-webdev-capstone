@@ -83,3 +83,6 @@ input[value="dinner"] {
     margin-bottom: 30px;
   }
 }
+input [disabled = "true"] {
+  background-color: #fff;
+}
