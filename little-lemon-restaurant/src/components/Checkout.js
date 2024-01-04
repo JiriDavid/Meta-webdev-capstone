@@ -61,12 +61,12 @@ export const Checkout = () => {
               <label htmlFor='terms-check'>Are you sure you want to continue</label>
             </div>
           </fieldset>
-          <fieldset >
-            <div className='btnReceive'>
-              <Link to="/success"><input type='submit' value={"Submit"} aria-label='On Click'/></Link>
+          <fieldset className='bottom-buttons'>
+            <div>
+              <Link to="/checkout"><button type='submit' aria-label='On click'>Submit</button> </Link>
             </div>
             <div className='btnReceive'>
-              <Link to="/booking"><input type='button' value={"Cancel"} aria-label='On Click'/></Link>
+              <Link to="/booking"><button type='button' aria-label='On Click'>Cancel</button></Link>
             </div>
           </fieldset>
           </form>

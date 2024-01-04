@@ -62,7 +62,7 @@ const BookingForm = ({ availableTimes, dispatch}) => {
         <form onSubmit={handleSubmit} className='booking-form'>
           <fieldset>
             <div>
-              <label htmlFor="select-occasion">Select Occasion</label>
+              <label htmlFor="select-occasion">Select Occasion<span className='star'>*</span></label>
               <select value={occasion} id='occasion' onChange={(e) => setOccasion(e.target.value)} key={occasion} required>
                 <option value="">Occasion</option>
                 <option value="birthday">Birthday</option>
@@ -73,7 +73,7 @@ const BookingForm = ({ availableTimes, dispatch}) => {
           </fieldset>
           <fieldset>
             <div>
-              <label htmlFor='select-date'>Select date</label>
+              <label htmlFor='select-date'>Select date<span className='star'>*</span></label>
               <input value={date} onChange={handleChange} type='date' required/>
             </div>
           </fieldset>
@@ -133,7 +133,7 @@ const BookingForm = ({ availableTimes, dispatch}) => {
               <Link to="/checkout"><button type='submit' disabled= {disabledButton}>Submit</button> </Link>
             </div>
             <div className='btnReceive'>
-              <Link to="/booking"><button type='button' >Submit</button></Link>
+              <Link to="/"><button type='button' >Cancel</button></Link>
             </div>
           </fieldset>
         </form>
